@@ -34,6 +34,7 @@ home assignment
 3. Navigate to `http://localhost:4200/` 
 
 # tests
+CMD cd **mese-home-assignment/mese-home-assignment/ui-jobs/angular-project/cypress**
    
 1. Run `npm install cypress --save-dev`
 2. Run `npx cypress open`
