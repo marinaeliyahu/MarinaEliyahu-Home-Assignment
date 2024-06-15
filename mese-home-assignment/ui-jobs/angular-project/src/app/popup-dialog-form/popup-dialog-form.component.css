@@ -1,0 +1,35 @@
+/* .example-container mat-form-field + mat-form-field {
+    margin-left: 10px;
+  }
+  
+  .example-container mat-form-field {
+    width: 420px;
+  }
+  
+  .example-container form {
+    margin-bottom: 20px;
+  }
+  
+  .example-container form > * {
+    margin: 12px 0 10px 10px;
+  }
+  
+  .example-container .mat-radio-button {
+    margin: 0 12px;
+  }
+  
+  .example-form-fields {
+    display: flex;
+    width: 420px;
+    align-items: flex-start;
+  } */
+
+  .example-form-fields {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }

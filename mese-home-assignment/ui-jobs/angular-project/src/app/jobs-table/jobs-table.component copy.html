@@ -1,0 +1,193 @@
+
+<div class="demo-table">
+<div class="demo-button-container">
+  <button mat-raised-button (click)="openDialog('Add',{})" class="demo-button">
+    Add Job
+  </button>
+</div>
+
+
+@if (isLoadingResults || isRateLimitReached) {
+<div class="example-loading-shade">
+  @if (isLoadingResults) {
+  <mat-spinner></mat-spinner>
+  }
+  @if (isRateLimitReached) {
+  <div class="example-rate-limit-reached">
+    GitHub's API rate limit has been reached. It will be reset in one minute.
+  </div>
+  }
+</div>
+}
+
+<!-- <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)" -->
+<!-- <table mat-table [dataSource]="dataSource" class="example-table"  matSort (matSortChange)="announceSortChange($event)    > -->
+<mat-form-field>
+  <mat-label>Filter</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Job" #input>
+</mat-form-field>
+<div class="example-table-container">
+  <div class="example-container mat-elevation-z8">
+
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table" matSort
+      (matSortChange)="sortData($event)"  >
+
+      <!-- <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
+        <td mat-cell *matCellDef="let row">{{row.id}}</td>
+      </ng-container> -->
+
+      <ng-container matColumnDef="created">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+          Created
+        </th>
+        <td mat-cell *matCellDef="let row">{{row.created_at | date}}</td>
+      </ng-container>
+
+      <!--  <ng-container matColumnDef="updated">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header   disableClear>
+          Updated
+        </th>
+        <td mat-cell *matCellDef="let row">{{row.updated_at | date}}</td>
+      </ng-container> -->
+
+
+
+      <ng-container matColumnDef="job">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Job</th>
+        <td mat-cell *matCellDef="let row">{{row.job}}</td>
+      </ng-container>
+      <!-- 
+      <ng-container matColumnDef="user">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>user</th>
+        <td mat-cell *matCellDef="let row">{{row.user}}</td>
+      </ng-container> -->
+
+
+      <!-- 
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+        <td mat-cell *matCellDef="let row">{{row.status}}</td>
+      </ng-container> -->
+
+      <ng-container matColumnDef="log">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Log</th>
+        <td mat-cell *matCellDef="let row">{{row.log}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="state">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>State</th>
+        <td mat-cell *matCellDef="let row">{{row.state}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="user">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>User</th>
+        <td mat-cell *matCellDef="let row">{{row.user}}</td>
+      </ng-container>
+      <ng-container matColumnDef="update">
+        <th mat-header-cell *matHeaderCellDef>Update</th>
+        <td mat-cell *matCellDef="let row">
+          <button mat-icon-button aria-label="Example icon button with a vertical three dot icon"
+            (click)="openDialog('Update',row)">
+
+            <mat-icon>more_vert</mat-icon>
+          </button>
+
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="group">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>group</th>
+        <td mat-cell *matCellDef="let row">{{row.group}}</td>
+      </ng-container>
+
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      <!-- Row shown when there is no matching data. -->
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+      </tr>
+
+    </table>
+
+    <mat-paginator [length]="resultsLength" [pageSize]="5"
+      aria-label="Select page of GitHub search results"></mat-paginator>
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- 
+ 
+
+<div class="mat-elevation-z8">
+  <table mat-table class="full-width-table" matSort aria-label="Elements">
+
+    <ng-container matColumnDef="job">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Job</th>
+      <td mat-cell *matCellDef="let row">{{row.job}}</td>
+    </ng-container>
+    
+    <ng-container matColumnDef="user">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>user</th>
+      <td mat-cell *matCellDef="let row">{{row.user}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="group">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>group</th>
+      <td mat-cell *matCellDef="let row">{{row.group}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="date submitted">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Submitted Date</th>
+      <td mat-cell *matCellDef="let row">{{row.dateSubmitted}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+      <td mat-cell *matCellDef="let row">{{row.status}}</td>
+    </ng-container>
+    <ng-container matColumnDef="date completed">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Date completed</th>
+      <td mat-cell *matCellDef="let row">{{row.dateCompleted}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="log">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Log</th>
+      <td mat-cell *matCellDef="let row">{{row.log}}</td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="update">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Update</th>
+      <td mat-cell *matCellDef="let row">
+        <button mat-icon-button aria-label="Example icon button with a vertical three dot icon"
+          (click)="openDialog('Update',row)">
+
+          <mat-icon>more_vert</mat-icon>
+        </button>
+
+      </td>
+    </ng-container>
+
+     
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator #paginator [length]="dataSource.data.length" [pageIndex]="0" [pageSize]="10"
+    [pageSizeOptions]="[5, 10, 20]" aria-label="Select page">
+  </mat-paginator>
+</div> -->

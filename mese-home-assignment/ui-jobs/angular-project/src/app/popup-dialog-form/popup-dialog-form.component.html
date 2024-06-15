@@ -1,0 +1,96 @@
+<div>
+  
+    <a mat-dialog-title>Job {{data.job}}</a>
+    <a mat-dialog-title> <strong>{{action}}</strong></a>
+    <h1  *ngIf="controlForm.value.id" mat-dialog-title> ID {{data.id}}</h1>
+    <form [formGroup]="controlForm">
+
+        <mat-dialog-content>
+            <!-- <mat-form-field appearance="fill"></mat-form-field> -->
+
+            <mat-form-field *ngIf="action === 'Add' " class="example-full-width" appearance="fill">
+                <mat-label>user</mat-label>
+                <input matInput placeholder="{{action}} user" formControlName="user">
+            </mat-form-field>
+            <mat-form-field *ngIf="action === 'Update' " class="example-full-width" appearance="fill" readonly>
+                <mat-label>user</mat-label>
+                <input matInput formControlName="user" readonly>
+            </mat-form-field>
+
+
+            <mat-form-field *ngIf="action === 'Add' " class="example-full-width" appearance="fill">
+                <mat-label>job</mat-label>
+                <input matInput placeholder="{{action}} job" formControlName="job">
+            </mat-form-field>
+            <mat-form-field *ngIf="action === 'Update' " class="example-full-width" appearance="fill">
+                <mat-label>job</mat-label>
+                <input matInput placeholder="{{action}} job" formControlName="job" readonly>
+            </mat-form-field>
+
+
+            <mat-form-field *ngIf="action === 'Add' " class="example-full-width" appearance="fill">
+                <mat-label>group</mat-label>
+                <input placeholder="{{action}} group : " matInput formControlName="group">
+            </mat-form-field>
+
+            <mat-form-field *ngIf="action === 'Update' " class="example-full-width" appearance="fill">
+                <mat-label>group</mat-label>
+                <input placeholder="{{action}} group : " matInput formControlName="group" readonly>
+            </mat-form-field>
+
+
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>log</mat-label>
+                <input matInput placeholder="{{action}} log" formControlName="log">
+            </mat-form-field>
+
+
+            <mat-form-field *ngIf="controlForm.value.created_at " class="example-full-width">
+                <mat-label>submited date</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="submitted_at" readonly>
+                <mat-datepicker-toggle *ngIf="action !== 'Update' " matIconSuffix
+                    [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>state</mat-label>
+                <mat-select formControlName="state">
+                    <mat-option *ngFor="let status of availableStates" [value]="status">{{ status }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field *ngIf="controlForm.value.created_at " class="example-full-width">
+                <mat-label>updated date</mat-label>
+                <input matInput [matDatepicker]="picker2" formControlName="updated_at" readonly>
+
+                <mat-datepicker-toggle ngIf="action !== 'Update'" matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field *ngIf="controlForm.value.created_at " class="example-full-width">
+                <mat-label>created date</mat-label>
+                <input matInput [matDatepicker]="picker4" formControlName="created_at" readonly>
+
+                <!-- <mat-datepicker-toggle matIconSuffix [for]="picker4"></mat-datepicker-toggle> -->
+                <mat-datepicker #picker4></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field *ngIf="controlForm.value.completed_at " class="example-full-width">
+                <mat-label>completed date</mat-label>
+                <input matInput [matDatepicker]="picker3" formControlName="completed_at" readonly>
+                <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
+                <mat-datepicker-toggle *ngIf="action !== 'Update'" matIconSuffix
+                    [for]="picker3"></mat-datepicker-toggle>
+                <mat-datepicker #picker3></mat-datepicker>
+            </mat-form-field>
+
+        </mat-dialog-content>
+        <mat-dialog-actions>
+            <button mat-button mat-dialog-close (click)="closeDialog()">Cancel</button>
+            <button mat-button (click)="doAction()" cdkFocusInitial>{{action}}</button>
+            <!-- <button mat-button (click)="doAction()">{{action}}</button>
+            <button mat-button (click)="closeDialog()" mat-flat-button color="warn">Cancel</button>    [mat-dialog-close]="isValid"-->
+        </mat-dialog-actions>
+    </form>
+</div>
