@@ -30,7 +30,7 @@ home assignment
 ## Run local code
 
 1. Run `npm install`
-2. Run `npm run dev`
+2. Run `npm run start`
 3. Navigate to `http://localhost:4200/` 
 
 # tests

@@ -2,7 +2,7 @@ import { JobsItem } from '../../src/app/models/job-model'
 
 let jobsList: Array<JobsItem>;
 let mockJob: JobsItem = {
-    id: "W17181056569291",
+    
     job: "TTTTTEEEEESSSSSSTTTTTTT",
     user: "user@draft.dev",
     group: "R&D",

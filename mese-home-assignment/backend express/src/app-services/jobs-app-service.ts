@@ -3,7 +3,10 @@ import { JsonDB, Config } from 'node-json-db';
 import { JobsItem } from "../models/job-model";
 
 var db = new JsonDB(new Config("./src/db.json", true, true, '/', true));
-
+export function generateId() {
+  var randLetter = String.fromCharCode(65 + Math.floor(Math.random() * 26));
+  return randLetter + Date.now();
+}
 export default class JobsAppService {
   date = new Date();
   public getAll = async () => {
@@ -11,6 +14,7 @@ export default class JobsAppService {
   };
 
   public insertJob = async (job: JobsItem) => {
+    job.id =  !job.id ? generateId() : job.id;
     job.created_at = this.date;
     job.submitted_at = this.date;
     job.completed_at = job.state === 'Succeeded' ? this.date : '';

@@ -71,6 +71,18 @@
             "submitted_at": "2024-06-15T20:14:07.559Z",
             "updated_at": "",
             "completed_at": ""
-        }
+        },
+        {
+            "id": "F1718531077227",
+            "user": "mtest1@sd.fd",
+            "job": "test-job",
+            "group": "test ",
+            "state": "Succeeded",
+            "log": "test",
+            "created_at": "2024-06-16T09:42:24.691Z",
+            "submitted_at": "2024-06-16T09:42:24.691Z",
+            "updated_at": "2024-06-16T09:42:24.691Z",
+            "completed_at": "2024-06-16T09:42:24.691Z"
+        } 
     ]
 }
